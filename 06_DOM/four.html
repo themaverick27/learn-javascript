@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM Learning</title>
+</head>
+<body style="background-color: black; color: white;">
+    <ul class="language">
+        <li>Javascript</li>
+    </ul>
+</body>
+<script>
+    function addLanguage(langName){
+        // create a list element
+        const li = document.createElement('li')
+        // add text to the element - this way is little bit costly, as it traverse the tree completely everytime
+        li.innerHTML = langName
+        // add the element by selecting class
+        document.querySelector('.language').appendChild(li)
+    }
+
+    addLanguage("python")
+    addLanguage("typescript")
+
+    // a little optimised approach 
+    function addLanguageOptimised(langName){
+        const li = document.createElement('li')
+        li.appendChild(document.createTextNode(langName))
+
+        document.querySelector('.language').appendChild(li)
+    }
+
+    addLanguageOptimised('Golang')
+    addLanguageOptimised('Dart')
+
+    // edit a value
+    const secondLang = document.querySelector(".li:nth-child(2)")
+    // secondLang.innerHTML = "Mojo"
+
+    // other approaches
+    const newli = document.createElement('li')
+    newli.textContent = "Mojo"
+    secondLang.replaceWith(newli)
+
+    // edit
+    const firstLang = document.querySelector(".lt:first-child")
+    firstLang.outerHTML = "TYPESCRIPT"
+
+    
+    // remove a value 
+    const lastLang = document.querySelector(".li:last-child")
+    lastLang.remove()
+</script>
+</html>
